@@ -10,8 +10,8 @@
 
       .state('notes', {
         url: '/notes',
-        template: '<h1>Notely</h1><p>{{ message }}</p><div ui-view></div>',
-        //templateUrl: '/notes/notes.html',
+        //template: '<h1>Notely</h1><p>{{ message }}</p><div ui-view></div>',
+        templateUrl: '/notes/notes.html',
         controller: NotesController
       })
 
@@ -21,9 +21,9 @@
       });
   }
 
-  NotesController.$inject = ['$scope'];
-  function NotesController($scope) {
-    $scope.message = "I <3 Angular.";
+  NotesController.$inject = ['$state'];
+  function NotesController($state) {
+    $state.go('notes.form');
   }
 
 })();
