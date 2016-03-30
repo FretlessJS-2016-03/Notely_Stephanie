@@ -8,21 +8,10 @@ notelyServerApp.use(function(req, res, next) {
   next();
 });
 
-notelyServerApp.get('/', function(req, res) {
+notelyServerApp.get('/notes', function(req, res) {
   Note.find().then(function(notes) {
     res.json(notes);
   });
-
-  // res.json([
-  //   {
-  //     title: 'Edited hardcoded note!',
-  //     body_html: 'Cool note. Aww, shucks.'
-  //   },
-  //   {
-  //     title: 'Another edited hardcoded note',
-  //     body_html: "Ain't life grand?"
-  //   }
-  // ]);
 });
 
 notelyServerApp.listen(3030, function() {
