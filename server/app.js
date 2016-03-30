@@ -21,6 +21,10 @@ notelyServerApp.get('/', function(req, res) {
       {
         "title": "Note 3 (hard-code)",
         "body_html" : "Body 3 (hard-code)"
+      },
+      {
+        "title": "Note 4 (hard-code)",
+        "body_html" : "Body 4 (hard-code)"
       }
     ]);
 });
