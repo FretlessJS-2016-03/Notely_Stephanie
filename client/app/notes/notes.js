@@ -35,6 +35,10 @@
       NotesService.create($scope.note);
     };
 
+    $scope.clearForm = function() {
+      $scope.note = {};
+    };
+
     $state.go('notes.form');
   }
 })();
