@@ -28,6 +28,7 @@
     // });
     NotesService.fetch().then(function () {
       $scope.Notes = NotesService.getNotes();
+      $scope.note = NotesService.findById($state.params.noteId);
     });
 
     $scope.save = function() {
@@ -38,6 +39,9 @@
     $scope.clearForm = function() {
       $scope.note = {};
     };
+
+    // getting id from url using state
+    //$scope.note = NotesService.findById($state.params.noteId);
 
     $state.go('notes.form');
   }
