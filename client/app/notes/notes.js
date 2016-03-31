@@ -38,12 +38,6 @@
     // getting id from url using state
     //$scope.note = NotesService.findById($state.params.noteId);
 
-    $scope.findById = function(noteId) {
-      //alert($scope.note.title);
-      alert("in findbyid");
-      $scope.note = NotesService.findById(noteId);
-    };
-
 
     $state.go('notes.form');
   }
