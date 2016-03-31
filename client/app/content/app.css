@@ -59,7 +59,7 @@ ul#notes {
   width: 100%;
   color: #999; }
   ul#notes li {
-    border-top: 1px solid #red;
+    border-top: 1px solid #ddd;
     height: 100px;
     font-size: 90%;
     cursor: pointer;
@@ -77,8 +77,11 @@ ul#notes {
       font-size: 120%;
       font-weight: 300; }
     ul#notes li .note-body {
+      color: #999;
       height: 54px;
       overflow: hidden; }
+    ul#notes li:hover .note-body {
+      color: white; }
     ul#notes li a.note {
       display: block;
       height: 100px;
