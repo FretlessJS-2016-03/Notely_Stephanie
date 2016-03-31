@@ -36,6 +36,16 @@
       });
     };
 
+    _this.update = function(note) {
+      alert("in update");
+      return $http.put('http://localhost:3030/notes/' + note._id, {
+        note: {
+          title: note.title,
+          body_html: note.body_html
+        }
+      });
+    };
+
     _this.findById = function(noteId) {
       for (var i = 0; i < _this.notes.length; i++) {
         // If the IDs match, return the current note

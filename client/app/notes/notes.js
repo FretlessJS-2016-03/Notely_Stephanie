@@ -28,30 +28,20 @@
 
   NotesController.$inject = ['$scope', '$state', 'NotesService'];
   function NotesController($scope, $state, NotesService) {
-    // NotesService.fetch(function() {
-    //   $scope.Notes = NotesService.getNotes();
-    // });
-
-    $scope.note = {};
-    $scope.Notes = NotesService.getNotes();
-
-    // getting id from url using state
-    //$scope.note = NotesService.findById($state.params.noteId);
-
-
+    $scope.notes = NotesService.getNotes();
     $state.go('notes.form');
   }
 
   NotesFormController.$inject = ['$scope', '$state', 'NotesService'];
   function NotesFormController($scope, $state, NotesService) {
     $scope.note = NotesService.findById($state.params.noteId);
-
     $scope.save = function() {
-      //alert($scope.note.title);
-      NotesService.create($scope.note);
+      if ($scope.note._id) {
+        NotesService.update($scope.note);
+      }
+      else {
+        NotesService.create($scope.note);
+      }
     };
-
-
   }
-
 })();
