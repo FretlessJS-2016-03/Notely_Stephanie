@@ -48,6 +48,18 @@ notelyServerApp.put('/notes/:noteId', function(req, res) {
   });
 });
 
+notelyServerApp.delete('/notes/:noteId', function(req, res) {
+  Note.findOne({ _id: req.params.noteId })
+    .then(function(note) {
+      note.remove().then(function() {
+        res.json({
+          message: 'Deleted!',
+          note: note
+        });
+      });
+    });
+});
+
 notelyServerApp.listen(3030, function() {
   console.log('Listening on http://localhost:3030');
 });

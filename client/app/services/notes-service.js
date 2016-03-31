@@ -48,6 +48,23 @@
       });
     };
 
+    _this.delete = function(note) {
+      return $http.delete('http://localhost:3030/notes/' + note._id)
+      .then(function(response) {
+        _this.removeNote(response.data.note);
+      });
+    };
+
+    _this.removeNote = function(updatedNote) {
+      for (var i = 0; i < _this.notes.length; i++) {
+        // If the IDs match, return the current note
+        if (_this.notes[i]._id === updatedNote._id) {
+          _this.notes.splice(i,1);
+          return;
+        }
+      }
+    };
+
     _this.replaceNote = function(updatedNote) {
       for (var i = 0; i < _this.notes.length; i++) {
         // If the IDs match, return the current note
