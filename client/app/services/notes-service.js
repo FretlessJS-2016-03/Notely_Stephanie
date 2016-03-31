@@ -37,13 +37,26 @@
     };
 
     _this.update = function(note) {
-      alert("in update");
+      //alert("in update");
       return $http.put('http://localhost:3030/notes/' + note._id, {
         note: {
           title: note.title,
           body_html: note.body_html
         }
+      }).then(function(response) {
+        _this.replaceNote(response.data.note);
       });
+    };
+
+    _this.replaceNote = function(updatedNote) {
+      for (var i = 0; i < _this.notes.length; i++) {
+        // If the IDs match, return the current note
+        if (_this.notes[i]._id === updatedNote._id) {
+          //_this.notes[i] = updatedNote;
+          _this.notes.splice(i,1,updatedNote);
+          return;
+        }
+      }
     };
 
     _this.findById = function(noteId) {

@@ -7,7 +7,7 @@ var NoteSchema = db.Schema({
 });
 
 NoteSchema.pre('save',function(next) {
-  this.update_at = Date.now();
+  this.updated_at = Date.now();
   next();
 });
 
