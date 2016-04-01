@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var notelyApp = angular.module('notely', ['ui.router', 'notely.notes']);
 
@@ -10,6 +12,44 @@
 
   notelyApp.constant('API_BASE', 'http://localhost:3030/');
 })();
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+angular.module('notely').directive('signUp', function () {
+  // alwasy camelcase name of directives, tags should be dasherized
+
+  var SignUpController = (function () {
+    function SignUpController() {
+      _classCallCheck(this, SignUpController);
+
+      // init
+      this.user = {};
+    }
+
+    _createClass(SignUpController, [{
+      key: 'submit',
+      value: function submit() {
+        console.log(this.user);
+      }
+    }]);
+
+    return SignUpController;
+  })();
+
+  return {
+    scope: {},
+    controller: SignUpController,
+    controllerAs: 'ctrl',
+    templateUrl: '/components/sign-up.html'
+  };
+});
+
+// ES 6 function() replace with () =>, binds "this" differently
+'use strict';
+
 (function () {
   angular.module('notely.notes', ['ui.router', 'textAngular']).config(notesConfig);
 
@@ -20,7 +60,7 @@
       templateUrl: '/notes/notes.html',
       controller: NotesController,
       resolve: {
-        notesLoaded: function (NotesService) {
+        notesLoaded: function notesLoaded(NotesService) {
           return NotesService.fetch();
         }
       }
@@ -50,13 +90,15 @@
       }
     };
 
-    $scope.delete = function () {
-      NotesService.delete($scope.note).then(function () {
+    $scope['delete'] = function () {
+      NotesService['delete']($scope.note).then(function () {
         $state.go('notes.form', { noteId: undefined });
       });
     };
   }
 })();
+'use strict';
+
 (function () {
 
   angular.module('notely').service('NotesService', NotesService);
@@ -75,7 +117,7 @@
 
       // Failure
       function (response) {
-        console.log('aww, snap:' + response);
+        console.log('aww, snap: ' + response);
       });
     };
 
@@ -106,8 +148,8 @@
       });
     };
 
-    _this.delete = function (note) {
-      return $http.delete(API_BASE + 'notes/' + note._id).then(function (response) {
+    _this['delete'] = function (note) {
+      return $http['delete'](API_BASE + 'notes/' + note._id).then(function (response) {
         _this.removeNote(response.data.note);
       });
     };
@@ -141,4 +183,19 @@
     };
   }
 })();
+'use strict';
+
+{
+
+  var usersConfig = function usersConfig($stateProvider) {
+    $stateProvider.state('sign-up', {
+      url: '/sign-up',
+      template: '<sign-up></sign-up>'
+    });
+  };
+
+  usersConfig.$inject = ['$stateProvider'];
+
+  angular.module('notely').config(usersConfig);
+}
 //# sourceMappingURL=bundle.js.map
